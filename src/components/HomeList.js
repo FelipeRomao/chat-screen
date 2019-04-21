@@ -29,9 +29,9 @@ export default class HomeList extends Component {
                     description : 'Pratos já prontos para comer',
                     bg : '#e35339',
                     products : [
-                        {name : 'Prato de Frango', img : require('../../assets/images/cardapio/pe/executivos_frang_.png')},
-                        {name : 'Prato de Peixe', img : require('../../assets/images/cardapio/pe/executivos_peix_.png')},
-                        {name : 'Prato de Picanha', img : require('../../assets/images/cardapio/pe/executivos_picanh_.png')}
+                        {key : '1', name : 'Prato de Frango', img : require('../../assets/images/cardapio/pe/executivos_frang_.png')},
+                        {key : '2', name : 'Prato de Peixe', img : require('../../assets/images/cardapio/pe/executivos_peix_.png')},
+                        {key : '3', name : 'Prato de Picanha', img : require('../../assets/images/cardapio/pe/executivos_picanh_.png')}
                     ]
                 },
 
@@ -42,9 +42,9 @@ export default class HomeList extends Component {
                     description : 'Pratos saudáveis para você.',
                     bg : '#a6bb24',
                     products : [
-                        {name : 'Salada de Frango', img : require('../../assets/images/cardapio/saladas/salada-fr.png')},
-                        {name : 'Salada Água Doce', img : require('../../assets/images/cardapio/saladas/salada_aguadoc_.png')},
-                        {name : 'Salada Salmão', img : require('../../assets/images/cardapio/saladas/salada_salma.png')}
+                        {key : '1', name : 'Salada de Frango', img : require('../../assets/images/cardapio/saladas/salada-fr.png')},
+                        {key : '2', name : 'Salada Água Doce', img : require('../../assets/images/cardapio/saladas/salada_aguadoc_.png')},
+                        {key : '3', name : 'Salada Salmão', img : require('../../assets/images/cardapio/saladas/salada_salma.png')}
                     ]
                 },
 
@@ -55,11 +55,11 @@ export default class HomeList extends Component {
                     description : 'Refrescos para voce.',
                     bg : '#079ed4',
                     products : [
-                        {name : 'Caipirosca', img : require('../../assets/images/cardapio/bebidas/capirosc_3.png')},
-                        {name : 'Cookie Cream', img : require('../../assets/images/cardapio/bebidas/cookies_crea.png')},
-                        {name : 'Morango GD', img : require('../../assets/images/cardapio/bebidas/morango_gd.png')},
-                        {name : 'Prata', img : require('../../assets/images/cardapio/bebidas/patra.png')},
-                        {name : 'Suco Fitness', img : require('../../assets/images/cardapio/bebidas/suco_fitines_gd.png')},
+                        {key : '1', name : 'Caipirosca', img : require('../../assets/images/cardapio/bebidas/capirosc_3.png')},
+                        {key : '2', name : 'Cookie Cream', img : require('../../assets/images/cardapio/bebidas/cookies_crea.png')},
+                        {key : '3', name : 'Morango GD', img : require('../../assets/images/cardapio/bebidas/morango_gd.png')},
+                        {key : '4', name : 'Prata', img : require('../../assets/images/cardapio/bebidas/patra.png')},
+                        {key : '5', name : 'Suco Fitness', img : require('../../assets/images/cardapio/bebidas/suco_fitines_gd.png')},
                     ]
                 },
 
@@ -70,9 +70,9 @@ export default class HomeList extends Component {
                     description : 'Sobremesas para voce.',
                     bg : '#fcb81c',
                     products : [
-                        {name : 'Brownie', img : require('../../assets/images/cardapio/sobremesas/brownie_gd.png')},
-                        {name : 'Creme Papaya', img : require('../../assets/images/cardapio/sobremesas/creme_papaya_cassis_gd.png')},
-                        {name : 'Delicia Gelada', img : require('../../assets/images/cardapio/sobremesas/delicia_gelada_gd.png')}
+                        {key : '1', name : 'Brownie', img : require('../../assets/images/cardapio/sobremesas/brownie_gd.png')},
+                        {key : '2', name : 'Creme Papaya', img : require('../../assets/images/cardapio/sobremesas/creme_papaya_cassis_gd.png')},
+                        {key : '3', name : 'Delicia Gelada', img : require('../../assets/images/cardapio/sobremesas/delicia_gelada_gd.png')}
                     ]
                 }
             ]
@@ -84,7 +84,7 @@ export default class HomeList extends Component {
             <View style={styles.container}>
                <FlatList 
                     data={this.state.list}
-                    renderItem={({item}) => <Cardapio data={item} />}
+                    renderItem={({item}) => <Cardapio data={item} navigation={this.props.navigation}/>}
                />
             </View>
         )
@@ -100,7 +100,7 @@ class Cardapio extends Component {
     }
 
     click() {
-
+        this.props.navigation.navigate('HomeProducts', {title : this.props.data.title ,products : this.props.data.products})
     }
     
     render() {
@@ -122,7 +122,7 @@ class Cardapio extends Component {
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-        marginTop : 10
+        marginTop : 50
     },
     
     icon : {
